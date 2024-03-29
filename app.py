@@ -7,11 +7,11 @@ import os
 
 appVersion = "Version 1.0"
 
-appIcon = "assets\YouTube_Logo.ico"
+appIcon = "assets/YouTube_Logo.ico"
 
 customtkinter.set_appearance_mode("system")
 
-customtkinter.set_default_color_theme("assets\YouTube Video Downloader CustomTkinter theme.json")
+customtkinter.set_default_color_theme("assets/YouTube Video Downloader CustomTkinter theme.json")
 
 app = customtkinter.CTk()
 

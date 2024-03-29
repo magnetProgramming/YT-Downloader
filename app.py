@@ -39,8 +39,9 @@ def downloader():
         video = tubeObject.streams.get_highest_resolution()
         finishLabel.configure(text="")
         video.download()
-    except:
+    except Exception as e:
         finishLabel.configure(text="Download failed!")
+        print(e)
 
 
 def progress(stream, chunk, bytes_left):
@@ -81,20 +82,22 @@ quality_format_ComboBox.pack()
 # same issue that's causing the focusing issue seems to be causing the icon to not appear on the about window.
 # Possible fix: https://stackoverflow.com/questions/76687351/customtkinter-entry-not-getting-focus
 def about():
-    about = customtkinter.CTkToplevel()
-    about.geometry("280x280")
-    about.iconbitmap(bitmap=appIcon)
-    about.title("About")
-    about.focus_force()
-    aboutTitleLabel = customtkinter.CTkLabel(master=about, text="YouTube Video Downloader")
+    aboutWindow = customtkinter.CTkToplevel()
+    aboutWindow.geometry("280x280")
+    aboutWindow.title("About")
+    aboutWindow.update()
+    aboutWindow.iconbitmap(bitmap=appIcon)
+    aboutWindow.after(500, lambda: aboutWindow.focus_force())
+    aboutTitleLabel = customtkinter.CTkLabel(master=aboutWindow, text="YouTube Video Downloader")
     aboutTitleLabel.pack()
-    appVersionLabel = customtkinter.CTkLabel(master=about, text=appVersion)
+    appVersionLabel = customtkinter.CTkLabel(master=aboutWindow, text=appVersion)
     appVersionLabel.pack()
-    developerLabel = customtkinter.CTkLabel(master=about, text="Developer: magnetProgramming")
+    developerLabel = customtkinter.CTkLabel(master=aboutWindow, text="Developer: magnetProgramming")
     developerLabel.pack()
 
 aboutButton = customtkinter.CTkButton(master=app, text="About", command=about)
 aboutButton.pack(padx=10, pady=10)
+
 
 
 
